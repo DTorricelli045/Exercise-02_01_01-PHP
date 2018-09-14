@@ -7,20 +7,23 @@
 Author: Dominic Torricelli
 Date: 10 Sept 2018
 
-DiceRoll.php -->
+DiceRoll2.php -->
 
     <meta charset="UTF-8">
-    <title>Dice Roll</title>
+    <title>Dice Roll 2</title>
     <meta name="viewport" content=" initial-scale=1">
     <script src="modernizr.custom.65897.js"></script>
 </head>
 
 <body>
-    <h2>Dice Roll</h2>
+    <h2>Dice Roll 2</h2>
     <?php
     //Global variables
         $faceNamesSingular = array("one", "two", "three", "four", "five", "six");
         $faceNamesPlural = array("ones", "twos", "threes", "fours", "fives", "sixes");
+        $doublesCount = 0;
+        $rollNumber = 1;
+        define("NBR_ROLLS", 4);
 
         //checks if dice are the same value
         function checkForDoubles($die1, $die2) {
@@ -79,15 +82,24 @@ DiceRoll.php -->
         
         }
 
+        //Display text and run functions
         $dice = array();
-        $dice[0] = rand(1, 6);
-        $dice[1] = rand(1, 6);
-        echo "<p>";
-        $score = $dice[0] + $dice[1];
-        echo "The total score for the roll was $score.<br>";
-        $doubles = checkForDoubles($dice[0], $dice[1]);
-        displayScoreText($score, $doubles);
-        echo "</p>";
+        while ($rollNumber <= NBR_ROLLS) {
+            $dice[0] = rand(1, 6);
+            $dice[1] = rand(1, 6);
+            echo "<p>";
+            $score = $dice[0] + $dice[1];
+            echo "The total score for the roll was $score.<br>";
+            $doubles = checkForDoubles($dice[0], $dice[1]);
+            displayScoreText($score, $doubles);
+            echo "</p>";
+            if ($doubles) {
+                ++$doublesCount;
+            }
+            ++$rollNumber;
+        }
+        echo "<p>Doubles occured on $doublesCount of the " . NBR_ROLLS . " rolls.</p>";
+        
     ?>
 
 </body>
