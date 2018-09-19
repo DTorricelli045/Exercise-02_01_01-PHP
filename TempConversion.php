@@ -20,11 +20,12 @@ TempConversion.php -->
 
     <?php
 
-    for ($fahr = 0; $fahr < 5; $fahr++) { 
+    // for loop to display an echo with proper equations for temperature conversions
+    for ($fahr = 0; $fahr < 101; $fahr++) { 
 
         $cel = ($fahr - 32) * (5/9);
 
-        echo "$fahr &#8457; is equal to "round($cel, 2) "&#8451;<br>";
+        echo "<div style=color:red;>$fahr &#8457;</div> === <br> <div style=color:blue;>" , number_format($cel, 1) , " &#8451;</div> <br> <hr> <br>";
     }
     
     ?>
